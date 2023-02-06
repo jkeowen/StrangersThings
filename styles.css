@@ -4,3 +4,35 @@
     box-sizing: border-box;
     background-color: lavender;
 }
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border: solid;
+    margin: 10px;
+}
+
+.upper-section{
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+}
+.login-register-header{
+    margin-left: 30px;
+}
+
+.nav-bar-header{
+    margin-top: 15px;
+}
+
+.item-nav-bar-header{
+    margin-left: 40px;
+    border-right: solid;
+    padding-right: 20px;
+}
+
+.item-nav-bar-header:last-child{
+    border-right:none;
+}
