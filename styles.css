@@ -14,13 +14,13 @@ header{
     margin: 10px;
 }
 
-.upper-section{
-    display: flex;
-    width: 70%;
-    justify-content: space-between;
-}
+
 .login-register-header{
-    margin-left: 30px;
+    /* margin-left: 30px; */
+    display: flex;
+    justify-content: right;
+    height: fit-content;
+    width: 100%;
 }
 
 .nav-bar-header{
@@ -28,11 +28,21 @@ header{
 }
 
 .item-nav-bar-header{
-    margin-left: 40px;
     border-right: solid;
     padding-right: 20px;
+    padding-left: 20px;
 }
 
 .item-nav-bar-header:last-child{
     border-right:none;
+}
+
+.post{
+    margin: 10px;
+    padding: 10px;
+    border: solid;
+}
+
+.post-content{
+    padding-left: 10px;
 }
