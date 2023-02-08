@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 
-const apiURL = `https://strangers-things.herokuapp.com/api/2211-ftb-et-web-am`;
 
 
 

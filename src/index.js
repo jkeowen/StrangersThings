@@ -10,15 +10,20 @@ import Profile from "./components/Profile";
 
 const App = () => {
     const [ userPosts, setUserPosts] = useState([]);
-1
+    const [ username, setUsername ] = useState('');
+    const [ password, setPassword ] = useState(''); 
+
+
+    const apiURL = `https://strangers-things.herokuapp.com/api/2211-ftb-et-web-am`;
+
 
     return(
         <div className="app">
             <Header />
             <Routes>
-                <Route path="/" element={<Posts userPosts={userPosts} setUserPosts={setUserPosts} />}/>
-                <Route path="/login" element={<Login />}/>
-                <Route path="/registration" element={<Registration/>}/>
+                <Route path="/" element={<Posts apiURL={apiURL} userPosts={userPosts} setUserPosts={setUserPosts} />}/>
+                <Route path="/login" element={<Login apiURL={apiURL} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />}/>
+                <Route path="/registration" element={<Registration apiURL={apiURL} username={username} setUsername={setUsername} password={password} setPassword={setPassword} />}/>
                 <Route path="/messages" element={<Messages/>}/>
                 <Route path="/profile" element={<Profile/>}/>
             </Routes>
