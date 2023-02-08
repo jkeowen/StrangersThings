@@ -24,6 +24,10 @@ button:hover{
     cursor: pointer;
 }
 
+a{
+    border: none;
+}
+
 .login-register-header{
     /* margin-left: 30px; */
     display: flex;

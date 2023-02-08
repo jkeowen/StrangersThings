@@ -4,6 +4,7 @@ import { HashRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Posts from "./components/Posts";
 import Login from "./components/Login";
+import Registration from "./components/Registration";
 import Messages from "./components/Messages";
 import Profile from "./components/Profile";
 
@@ -17,6 +18,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Posts userPosts={userPosts} setUserPosts={setUserPosts} />}/>
                 <Route path="/login" element={<Login />}/>
+                <Route path="/registration" element={<Registration/>}/>
                 <Route path="/messages" element={<Messages/>}/>
                 <Route path="/profile" element={<Profile/>}/>
             </Routes>
