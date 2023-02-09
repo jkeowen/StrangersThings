@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Header = ({ isLoggedIn, setIsLoggedIn }) =>{
 
     const logoutHandler = () => {
-        window.localStorage.removeItem('strangeToken');
+        window.localStorage.clear();
         setIsLoggedIn(false);
     }
 
