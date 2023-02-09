@@ -1,48 +1,52 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { loginHandler } from "../HelperFunctions";
 
-const Login = ({ apiURL, username, setUsername, password, setPassword }) =>{
+const Login = ({ username, 
+                 setUsername,   
+                 password, 
+                 setPassword, 
+                 setIsLoggedIn,
+                 isLoggedIn }) =>{
     
-    // const [ username, setUsername ] = useState('');
-    // const [ password, setPassword ] = useState(''); 
-    
-    // const handleChange = (event) => {
-    //     if(event.target.placeholder === "username"){
-    //         setUsername(event.target.value);
-    //     }
-    //     else{
-    //         setPassword(event.target.value);
-    //     }
-    // }
-    
-    // const handleSubmit = () => {
-    //     fetch(`${apiURL}/users/register`,{
-    //         method: "POST",
-    //         header: {
-    //             'Content-Type': 'application/json'
-    //         }, 
-    //         body: JSON.stringify({
-    //             user:{
-    //                 username: username,
-    //                 password: password
-    //             }
-    //         })
-    //     }).then(response => response.json())
-    //       .then(result => {
-    //         console.log(result)
-    //       })
-    //       .catch(console.error);
-    // }
+    const [ issueMessage, setIssueMessage ] = useState('');
+    const [ showPassword, setShowPassword] = useState('password');
+    const navigate = useNavigate();
+
+    const handleChange = (event) => {
+        if(event.target.placeholder === "username"){
+            setUsername(event.target.value);
+        }
+        else setPassword(event.target.value);
+    }
+
+    const clickHandler = () =>{
+        if(username !== '' && password !== ''){
+            if(!isLoggedIn){
+            loginHandler(username, password, setIsLoggedIn, navigate, setIssueMessage);
+            }
+            else setIssueMessage('You are already logged in!')
+        }
+      
+    }
+
+    const passwordViewHandler = () =>{
+        if(showPassword === 'password') setShowPassword('text');
+        else setShowPassword('password');
+
+    }
 
     return(
         <div className="login-page">
             <h3 className="login-title">Login to Stranger's Things</h3>
             <form className="login-form">
-                <input className="login-input" type="text"  placeholder="username"/> 
-                <input className="login-input" type="text"  placeholder="password"/> 
+                <input className="login-input" type="text"  placeholder="username" onChange={handleChange}/> 
+                <div className="login-password"><input className="login-input" type={showPassword}  placeholder="password" onChange={handleChange} 
+                /> <button onClick={passwordViewHandler} >Show</button></div> 
                 <div className="login-buttons">
-                  <button className="login-submit" >Login</button>
+                  <button className="login-submit" onClick={clickHandler} >Login</button>
                   <span className="login-register-question">No Account? <Link className="login-register" to="/registration">Register</Link></span>
+                  <div className="already-exists">{issueMessage}</div>
                 </div>
             </form>
         </div>

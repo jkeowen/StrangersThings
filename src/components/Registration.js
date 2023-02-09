@@ -28,7 +28,8 @@ const Registration = ({ apiURL,
    
     const handleRegister = () => {
         if(password !== '' && username !== '' && password === passwordConfirmation ){
-            registrationHandler(username, password, setIsLoggedIn, navigate)
+            registrationHandler(username, password, setIsLoggedIn, navigate, setPasswordMatchMessage)
+        
         }
         if(password !== passwordConfirmation){
             setPasswordMatchMessage('Passwords do not match!');
@@ -40,6 +41,7 @@ const Registration = ({ apiURL,
         if(username !== '' && password !== '' && passwordConfirmation !== ''){
             setMissingInfoMessage('')
         }
+
        
     }
 

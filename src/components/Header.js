@@ -11,7 +11,7 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) =>{
     return(
         <header>     
             {
-                isLoggedIn ? <Link className="login-register-header" to="/" onClick={logoutHandler}>Logout</Link> :
+                isLoggedIn ? <Link className="login-register-header" to="/login" onClick={logoutHandler}>Logout</Link> :
                 <Link className="login-register-header" to="/login">Login/Register</Link>
 
 

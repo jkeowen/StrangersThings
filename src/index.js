@@ -13,6 +13,7 @@ const App = () => {
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState(''); 
     const [ isLoggedIn, setIsLoggedIn ] = useState(window.localStorage.getItem('strangeToken'));
+    const [ alreadyExistsMessage, setAlreadyExistsMessage] = useState('');
 
     const apiURL = `https://strangers-things.herokuapp.com/api/2211-ftb-et-web-am`;
 
@@ -24,10 +25,12 @@ const App = () => {
                 <Route path="/" element={<Posts apiURL={apiURL} isLoggedIn={isLoggedIn}  
                 userPosts={userPosts} setUserPosts={setUserPosts} />}/>
                 <Route path="/login" element={<Login apiURL={apiURL} username={username} setUsername={setUsername} 
-                password={password} setPassword={setPassword} />}/>
+                password={password} setPassword={setPassword} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
+                alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}/>
                 <Route path="/registration" element={<Registration apiURL={apiURL} 
                 username={username} setUsername={setUsername} 
                 password={password} setPassword={setPassword}
+                alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}
                 setIsLoggedIn={setIsLoggedIn}/>}/>
                 <Route path="/messages" element={<Messages/>}/>
                 <Route path="/profile" element={<Profile/>}/>
