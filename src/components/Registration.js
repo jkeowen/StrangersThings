@@ -1,12 +1,21 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import registrationHandler from "../HelperFunctions";
 
-const Registration = ({ apiURL, username, setUsername, password, setPassword }) =>{
+const Registration = ({ apiURL, 
+    username, 
+    setUsername, 
+    password, 
+    setPassword,
+    setIsLoggedIn
+    }) =>{
      
 
     const [ passwordConfirmation, setPasswordConfirmation] = useState('');
     const [ passwordMatchMessage, setPasswordMatchMessage ] = useState('');
     const [ missingInfoMessage, setMissingInfoMessage ] = useState('');
     
+    const navigate = useNavigate();
     const handleChange = (event) => {
         if(event.target.placeholder === "username"){
             setUsername(event.target.value);
@@ -19,22 +28,7 @@ const Registration = ({ apiURL, username, setUsername, password, setPassword }) 
    
     const handleRegister = () => {
         if(password !== '' && username !== '' && password === passwordConfirmation ){
-        fetch(`${apiURL}/users/register`,{
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            }, 
-            body: JSON.stringify({
-                user:{
-                    username: username,
-                    password: password
-                }
-            })
-        }).then(response => response.json())
-          .then(result => {
-            console.log(result)
-          })
-          .catch(console.error);
+            registrationHandler(username, password, setIsLoggedIn, navigate)
         }
         if(password !== passwordConfirmation){
             setPasswordMatchMessage('Passwords do not match!');
@@ -46,6 +40,7 @@ const Registration = ({ apiURL, username, setUsername, password, setPassword }) 
         if(username !== '' && password !== '' && passwordConfirmation !== ''){
             setMissingInfoMessage('')
         }
+       
     }
 
     return(

@@ -3,7 +3,11 @@ import React, { useEffect } from "react";
 
 
 
-const Posts = ({ userPosts, setUserPosts }) => {
+const Posts = ({apiURL, 
+                userPosts, 
+                setUserPosts,
+                isLoggedIn,
+                }) => {
     
 
 useEffect(()=>{
@@ -22,6 +26,11 @@ useEffect(()=>{
 
     return(
 
+        <div className="post-page">
+            {
+                isLoggedIn ? <p>You are logged in!</p> : null
+            }
+        {
         userPosts.map((post, index) => {
             return(
                 <div className="post" key={index}>
@@ -33,7 +42,8 @@ useEffect(()=>{
                     <button>More Info</button>
                 </div>
             )
-        })
+        })}
+        </div>
             
         
     )
