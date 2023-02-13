@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-
+import React, { useState, useEffect } from "react";
+import { newPostHandler, deleteListingHandler } from "../HelperFunctions";
 
 
 const Posts = ({apiURL, 
@@ -7,14 +7,19 @@ const Posts = ({apiURL,
                 setUserPosts,
                 isLoggedIn,
                 }) => {
-    
+
+const [ newListingTitle, setNewListingTitle] = useState('');
+const [ newListingDescription, setNewListingDescription ] = useState('');
+const [ newListingPrice, setNewListingPrice ] = useState('');
+const [ newListingLocation, setNewListingLocation ] = useState('');
+const [ newListingWillDeliver, setNewListingWillDeliver ] = useState(false);
+                    
 
 useEffect(()=>{
    const getPosts = () => {
         fetch(`${apiURL}/posts`)
         .then(response => response.json())
         .then(result => {
-            console.log(result.data.posts);
             setUserPosts(result.data.posts)
         })
     .catch(console.error);
@@ -22,7 +27,23 @@ useEffect(()=>{
     getPosts()
 }, []);
 
+    const handleNewListingChange = (event) => {
+        if(event.target.placeholder === 'title') setNewListingTitle(event.target.value);
+        else if(event.target.placeholder === 'description') setNewListingDescription(event.target.value);
+        else if(event.target.placeholder === 'price') setNewListingPrice(event.target.value);
+        else if(event.target.placeholder === 'location') setNewListingLocation(event.target.value);
+        // else setNewListingWillDeliver(event.target.value);
+    }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        newPostHandler(newListingTitle, newListingDescription, 
+                        newListingPrice, newListingLocation, 
+                        newListingWillDeliver, userPosts, setUserPosts);
+    }
+
+    
+        
     return(
 
         <div className="post-page">
@@ -30,12 +51,14 @@ useEffect(()=>{
                 isLoggedIn ? 
                     <div className="post-logged-in-stuff">
                     <h2 className="post-welcome">Welcome {window.localStorage.getItem('username')}! </h2>
-                    <h3 className="post-add-listing-title"></h3>
-                    <form className="post-add-listing-form" >
-                        <input placeholder="title" type="text"/>
-                        <input placeholder="description" type="text"/>
-                        <input placeholder="price" type="text"/>
-                        <input placeholder="will deliver?" type="text"/>
+                    <h3 className="post-add-listing-title">Create A New Listing:</h3>
+                    <form className="post-add-listing-form" onSubmit={handleSubmit}>
+                        <input placeholder="title" type="text" onChange={handleNewListingChange}/>
+                        <input placeholder="description" type="text" onChange={handleNewListingChange}/>
+                        <input placeholder="price" type="text" onChange={handleNewListingChange}/>
+                        <input placeholder="location" type='text' onChange={handleNewListingChange}/>
+                        {/* <input placeholder="will deliver?" type="text" onChange={handleNewListingChange}/> */}
+                        <button type="submit">Add New Listing!</button>
                     </form>
                     </div> 
                     : null
@@ -50,6 +73,9 @@ useEffect(()=>{
                     <h6 className="post-price">{post.price}</h6>
                     <h6 className="post-location">{post.location}</h6>
                     <button>More Info</button>
+                       { post.author.username === window.localStorage.getItem('username') ?
+                         <button onClick={()=> deleteListingHandler(post._id, userPosts, setUserPosts, post)}>Delete</button> : null
+                       }
                 </div>
             )
         })}

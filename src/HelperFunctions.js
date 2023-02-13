@@ -57,27 +57,42 @@ export const getCurrentUser = (setFunction) =>{
         }).catch(console.error)
 }
 
-export const newPostHandler = (postTitle, postDescription, postPrice, postWillDeliver, postSetter, currentPosts) => {
+export const newPostHandler = (postTitle, postDescription, postPrice, postLocation, postWillDeliver, currentPosts, postSetter) => {
     fetch(`${apiURL}/posts`,{
         method: "POST",
         headers:{
             'Content-Type': 'application/json',
-            'Authorization': window.localStorage.getItem('strangeToken')
+            'Authorization': `Bearer ${window.localStorage.getItem('strangeToken')}`
         },
         body: JSON.stringify({
             post: {
                 title: postTitle,
                 description: postDescription,
-                price, postPrice,
+                price: postPrice,
+                location: postLocation,
                 willDeliver: postWillDeliver
             }
         })
     }).then(response => response.json())
       .then(result => {
         console.log(result);
-        postSetter([...currentPosts, result])
+        postSetter([...currentPosts, result.data.post])
       })
       .catch(console.error)
+}
+
+export const deleteListingHandler = (listingID, currentListings,listingSetter, thisListing) =>{
+    fetch(`${apiURL}/posts/${listingID}`, {
+        method: "DELETE",
+        headers:{
+            'Content-Type': 'application.json',
+            'Authorization': `Bearer ${window.localStorage.getItem('strangeToken')}`
+        }
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        listingSetter([...currentListings].filter((listing) => listing !== thisListing))
+      }).catch(console.error);
 }
 
 
