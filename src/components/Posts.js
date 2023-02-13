@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { newPostHandler, deleteListingHandler } from "../HelperFunctions";
+import { useNavigate } from "react-router-dom";
 
 
 const Posts = ({apiURL, 
@@ -14,6 +15,7 @@ const [ newListingPrice, setNewListingPrice ] = useState('');
 const [ newListingLocation, setNewListingLocation ] = useState('');
 const [ newListingWillDeliver, setNewListingWillDeliver ] = useState(false);
                     
+const navigate = useNavigate();
 
 useEffect(()=>{
    const getPosts = () => {
@@ -41,9 +43,11 @@ useEffect(()=>{
                         newListingPrice, newListingLocation, 
                         newListingWillDeliver, userPosts, setUserPosts);
     }
-
-    
-        
+       
+    const moreInfoHandler = (listingIndex) => {
+        navigate(`/singleListing/${listingIndex}`)
+    }
+ 
     return(
 
         <div className="post-page">
@@ -72,7 +76,7 @@ useEffect(()=>{
                     <h6 className="post-seller">{post.author.username}</h6>
                     <h6 className="post-price">{post.price}</h6>
                     <h6 className="post-location">{post.location}</h6>
-                    <button>More Info</button>
+                    <button onClick={()=> moreInfoHandler(index)} >More Info</button>
                        { post.author.username === window.localStorage.getItem('username') ?
                          <button onClick={()=> deleteListingHandler(post._id, userPosts, setUserPosts, post)}>Delete</button> : null
                        }

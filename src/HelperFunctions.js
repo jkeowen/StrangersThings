@@ -81,7 +81,7 @@ export const newPostHandler = (postTitle, postDescription, postPrice, postLocati
       .catch(console.error)
 }
 
-export const deleteListingHandler = (listingID, currentListings,listingSetter, thisListing) =>{
+export const deleteListingHandler = (listingID, currentListings, listingSetter, thisListing) =>{
     fetch(`${apiURL}/posts/${listingID}`, {
         method: "DELETE",
         headers:{
@@ -95,5 +95,16 @@ export const deleteListingHandler = (listingID, currentListings,listingSetter, t
       }).catch(console.error);
 }
 
+
+export const getSingleListing = (listingIndex, singleListingStateSetter, usernameSetter) =>{
+    fetch(`${apiURL}/posts`)
+    .then(response => response.json())
+    .then(result => {
+        console.log(result.data.posts[listingIndex].willDeliver);
+        usernameSetter(result.data.posts[listingIndex].author.username)
+        singleListingStateSetter(result.data.posts[listingIndex]);
+    })
+    .catch(console.error);
+}
 
 export default registrationHandler;

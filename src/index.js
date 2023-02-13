@@ -7,6 +7,7 @@ import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Messages from "./components/Messages";
 import Profile from "./components/Profile";
+import SingleListing from "./components/SingleListing";
 
 const App = () => {
     const [ userPosts, setUserPosts] = useState([]);
@@ -33,6 +34,7 @@ const App = () => {
                 password={password} setPassword={setPassword}
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}
                 setIsLoggedIn={setIsLoggedIn}/>}/>
+                <Route path="/singleListing/:id" element={<SingleListing />}/>
                 <Route path="/messages" element={<Messages/>}/>
                 <Route path="/profile" element={<Profile/>}/>
             </Routes>
