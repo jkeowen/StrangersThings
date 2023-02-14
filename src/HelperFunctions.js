@@ -105,7 +105,7 @@ export const getSingleListing = (listingIndex, singleListingStateSetter) =>{
     .catch(console.error);
 }
 
-export const editPostHandler = (id, paraTitle, paraDescription, paraPrice, paraLocation, listingIndex, singleListingSetter, usernameSetter) => {
+export const editPostHandler = (id, paraTitle, paraDescription, paraPrice, paraLocation, listingIndex, singleListingSetter) => {
     fetch(`${apiURL}/posts/${id}`,{
         method: "PATCH",
         headers:{
@@ -123,7 +123,7 @@ export const editPostHandler = (id, paraTitle, paraDescription, paraPrice, paraL
     }).then(response => response.json())
       .then(result => {
         console.log(result);
-        getSingleListing(listingIndex, singleListingSetter, usernameSetter)
+        getSingleListing(listingIndex, singleListingSetter)
       }).catch(console.error);
 }
 

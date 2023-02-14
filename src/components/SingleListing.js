@@ -20,10 +20,11 @@ const SingleListing = ({ singleListing, setSingleListing }) => {
     }
 
     useEffect(()=>{
+        console.log('run')
         getSingleListing(id, setSingleListing)
-    },[singleListing])
+    },[])
 
-   
+   console.log(singleListing)
    
     return(
         

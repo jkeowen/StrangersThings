@@ -18,7 +18,7 @@ const App = () => {
     const [ isLoggedIn, setIsLoggedIn ] = useState(window.localStorage.getItem('strangeToken'));
     const [ alreadyExistsMessage, setAlreadyExistsMessage] = useState('');
     const [ listingIndex, setListingIndex ] = useState('');
-    const [ singleListing, setSingleListing ] = useState({author:{}});
+    const [ singleListing, setSingleListing ] = useState({title:'', author:{}});
     const [ listingUsername, setListingUserName ] = useState('');
     const [ userInfo, setUserInfo ] = useState({posts:[{}], messages:[{post:{}, fromUser:{}}]});
     
