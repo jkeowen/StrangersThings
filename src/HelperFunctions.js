@@ -128,4 +128,16 @@ export const editPostHandler = (id, paraTitle, paraDescription, paraPrice, paraL
       }).catch(console.error);
 }
 
+export const getCurrentUserInfo = (setter) => {
+    fetch(`${apiURL}/users/me`, {
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.localStorage.getItem('strangeToken')}`
+        },
+    }).then(response => response.json())
+      .then(result => {
+        setter(result.data);
+      }).catch(console.error);
+}
+
 export default registrationHandler;
