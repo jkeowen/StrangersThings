@@ -1,30 +1,49 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { getSingleListing } from "../HelperFunctions";
 
-const SingleListing = () => {
+const SingleListing = ({ listingIndex, singleListing, setSingleListing, listingUsername, setListingUserName }) => {
 
-    const [ singleListing, setSingeListing ] = useState({});
-    const [ listingUsername, setListingUserName ] = useState('');
+    
 
     const { id } = useParams();
 
-    useEffect(()=>{
-        getSingleListing(id, setSingeListing, setListingUserName)
-    },[])
+    const navigate = useNavigate();
 
+    const backHandler = () => {
+        navigate('/');
+    }
+
+    
+    const editButtonHandler = () => {
+       navigate(`/editlisting/${singleListing._id}`)
+    }
+
+    useEffect(()=>{
+        getSingleListing(listingIndex, setSingleListing, setListingUserName)
+    },[singleListing])
+
+   
+   
     return(
+        
         <div className="post">
-        <h3 className="post-title">{singleListing.title}</h3>
-        <p className="post-content">{singleListing.description}</p>
-        <h6 className="post-seller">{listingUsername}</h6>
-        <h6 className="post-price">{singleListing.price}</h6>
-        <h6 className="post-location">{singleListing.location}</h6>
-        <h6 className="[post-posted-at"> {singleListing.createdAt}</h6>
-        <button>Back</button>
-           { listingUsername === window.localStorage.getItem('username') ?
-             <button>Delete</button> : <button>Message</button>
-           }
+    
+                <h3 className="post-title">{singleListing.title}</h3>
+                <p className="post-content">{singleListing.description}</p>
+                <h6 className="post-seller">{listingUsername}</h6>
+                <h6 className="post-price">{singleListing.price}</h6>
+                <h6 className="post-location">{singleListing.location}</h6>
+                <h6 className="post-posted-at"> {singleListing.createdAt}</h6>
+        
+        { listingUsername === window.localStorage.getItem('username') ?
+            <div className="user-buttons-single-post">
+                <button>Delete</button>
+                <button onClick={editButtonHandler}>Edit</button>
+            </div> : 
+            <button>Message</button>
+        }
+        <button onClick={backHandler}>Back</button>
     </div>
     )
 }

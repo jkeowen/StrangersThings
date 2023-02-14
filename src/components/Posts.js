@@ -7,6 +7,7 @@ const Posts = ({apiURL,
                 userPosts, 
                 setUserPosts,
                 isLoggedIn,
+                setListingIndex,
                 }) => {
 
 const [ newListingTitle, setNewListingTitle] = useState('');
@@ -44,8 +45,9 @@ useEffect(()=>{
                         newListingWillDeliver, userPosts, setUserPosts);
     }
        
-    const moreInfoHandler = (listingIndex) => {
-        navigate(`/singleListing/${listingIndex}`)
+    const moreInfoHandler = (listingId, index) => {
+        setListingIndex(index);
+        navigate(`/singleListing/${listingId}`)
     }
  
     return(
@@ -76,10 +78,7 @@ useEffect(()=>{
                     <h6 className="post-seller">{post.author.username}</h6>
                     <h6 className="post-price">{post.price}</h6>
                     <h6 className="post-location">{post.location}</h6>
-                    <button onClick={()=> moreInfoHandler(index)} >More Info</button>
-                       { post.author.username === window.localStorage.getItem('username') ?
-                         <button onClick={()=> deleteListingHandler(post._id, userPosts, setUserPosts, post)}>Delete</button> : null
-                       }
+                    <button onClick={()=> moreInfoHandler(post._id, index)} >More Info</button>
                 </div>
             )
         })}

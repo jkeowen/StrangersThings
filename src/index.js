@@ -8,6 +8,7 @@ import Registration from "./components/Registration";
 import Messages from "./components/Messages";
 import Profile from "./components/Profile";
 import SingleListing from "./components/SingleListing";
+import EditListing from "./components/EditListing";
 
 const App = () => {
     const [ userPosts, setUserPosts] = useState([]);
@@ -15,6 +16,9 @@ const App = () => {
     const [ password, setPassword ] = useState(''); 
     const [ isLoggedIn, setIsLoggedIn ] = useState(window.localStorage.getItem('strangeToken'));
     const [ alreadyExistsMessage, setAlreadyExistsMessage] = useState('');
+    const [ listingIndex, setListingIndex ] = useState('');
+    const [ singleListing, setSingleListing ] = useState({});
+    const [ listingUsername, setListingUserName ] = useState('');
 
 
     const apiURL = `https://strangers-things.herokuapp.com/api/2211-ftb-et-web-am`;
@@ -25,7 +29,7 @@ const App = () => {
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             <Routes>
                 <Route path="/" element={<Posts apiURL={apiURL} isLoggedIn={isLoggedIn}  
-                userPosts={userPosts} setUserPosts={setUserPosts} username={username} />}/>
+                userPosts={userPosts} setUserPosts={setUserPosts} username={username} setListingIndex={setListingIndex} />}/>
                 <Route path="/login" element={<Login apiURL={apiURL} username={username} setUsername={setUsername} 
                 password={password} setPassword={setPassword} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}/>
@@ -34,7 +38,11 @@ const App = () => {
                 password={password} setPassword={setPassword}
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}
                 setIsLoggedIn={setIsLoggedIn}/>}/>
-                <Route path="/singleListing/:id" element={<SingleListing />}/>
+                <Route path="/singleListing/:id" element={<SingleListing listingIndex={listingIndex} singleListing={singleListing}
+                                                        setSingleListing={setSingleListing}
+                                                        listingUsername={listingUsername} setListingUserName={setListingUserName}/>}/>
+                <Route path="/editListing/:id" element={<EditListing singleListing={singleListing} setSingleListing={setSingleListing}/>}
+                                listingUsername={listingUsername} setListingUserName={setListingUserName} listingIndex={listingIndex}/>
                 <Route path="/messages" element={<Messages/>}/>
                 <Route path="/profile" element={<Profile/>}/>
             </Routes>

@@ -100,11 +100,32 @@ export const getSingleListing = (listingIndex, singleListingStateSetter, usernam
     fetch(`${apiURL}/posts`)
     .then(response => response.json())
     .then(result => {
-        console.log(result.data.posts[listingIndex].willDeliver);
         usernameSetter(result.data.posts[listingIndex].author.username)
         singleListingStateSetter(result.data.posts[listingIndex]);
     })
     .catch(console.error);
+}
+
+export const editPostHandler = (id, paraTitle, paraDescription, paraPrice, paraLocation,listingIndex, singleListingSetter, usernameSetter) => {
+    fetch(`${apiURL}/posts/${id}`,{
+        method: "PATCH",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.localStorage.getItem('strangeToken')}`
+        },
+        body: JSON.stringify({
+            post: {
+                title: paraTitle,
+                description: paraDescription,
+                price: paraPrice,
+                location: paraLocation,
+            }
+        })
+    }).then(response => response.json())
+      .then(result => {
+        console.log(result);
+        getSingleListing(listingIndex, singleListingSetter, usernameSetter)
+      }).catch(console.error);
 }
 
 export default registrationHandler;
