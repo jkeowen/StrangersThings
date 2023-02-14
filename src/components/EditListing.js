@@ -1,6 +1,6 @@
 import React, { useState} from "react";
 import { editPostHandler } from "../HelperFunctions";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditListing = ({ singleListing, setSingleListing, listingIndex, setListingUsername }) =>{
 
@@ -11,9 +11,10 @@ const EditListing = ({ singleListing, setSingleListing, listingIndex, setListing
 
     const navigate = useNavigate();
     
+    const { id } = useParams();
 
     const changeEditButtonHandler = () => {
-        editPostHandler(singleListing._id, listingTitle, listingDescription, listingPrice, listingLocation, listingIndex, setSingleListing, setListingUsername);
+        editPostHandler(id, listingTitle, listingDescription, listingPrice, listingLocation, listingIndex, setSingleListing, setListingUsername);
         navigate(`/singleListing/${singleListing._id}`)
         // navigate('/')
            

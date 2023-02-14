@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSingleListing } from "../HelperFunctions";
 
-const SingleListing = ({ listingIndex, singleListing, setSingleListing }) => {
+const SingleListing = ({ singleListing, setSingleListing }) => {
 
     
 
@@ -16,11 +16,11 @@ const SingleListing = ({ listingIndex, singleListing, setSingleListing }) => {
 
     
     const editButtonHandler = () => {
-       navigate(`/editlisting/${singleListing._id}`)
+       navigate(`/editlisting/${id}`)
     }
 
     useEffect(()=>{
-        getSingleListing(listingIndex, setSingleListing)
+        getSingleListing(id, setSingleListing)
     },[singleListing])
 
    
