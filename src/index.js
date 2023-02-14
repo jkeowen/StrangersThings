@@ -9,6 +9,7 @@ import Messages from "./components/Messages";
 import Profile from "./components/Profile";
 import SingleListing from "./components/SingleListing";
 import EditListing from "./components/EditListing";
+import SendAMessage from "./components/SendAMessage";
 
 const App = () => {
     const [ userPosts, setUserPosts] = useState([]);
@@ -17,8 +18,10 @@ const App = () => {
     const [ isLoggedIn, setIsLoggedIn ] = useState(window.localStorage.getItem('strangeToken'));
     const [ alreadyExistsMessage, setAlreadyExistsMessage] = useState('');
     const [ listingIndex, setListingIndex ] = useState('');
-    const [ singleListing, setSingleListing ] = useState({});
+    const [ singleListing, setSingleListing ] = useState({author:{}});
     const [ listingUsername, setListingUserName ] = useState('');
+    const [ userInfo, setUserInfo ] = useState({posts:[{}], messages:[{post:{}, fromUser:{}}]});
+    
 
 
     const apiURL = `https://strangers-things.herokuapp.com/api/2211-ftb-et-web-am`;
@@ -39,12 +42,12 @@ const App = () => {
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}
                 setIsLoggedIn={setIsLoggedIn}/>}/>
                 <Route path="/singleListing/:id" element={<SingleListing listingIndex={listingIndex} singleListing={singleListing}
-                                                        setSingleListing={setSingleListing}
-                                                        listingUsername={listingUsername} setListingUserName={setListingUserName}/>}/>
+                                                        setSingleListing={setSingleListing}/>}/>
                 <Route path="/editListing/:id" element={<EditListing singleListing={singleListing} setSingleListing={setSingleListing}/>}
                                 listingUsername={listingUsername} setListingUserName={setListingUserName} listingIndex={listingIndex}/>
-                <Route path="/messages" element={<Messages/>}/>
-                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/messages" element={<Messages userInfo={userInfo} setUserInfo={setUserInfo} />}/>
+                <Route path="/messages/:index" element={<SendAMessage/>}/>
+                <Route path="/profile" element={<Profile userInfo={userInfo} setUserInfo={setUserInfo}/>}/>
             </Routes>
         </div>
     )

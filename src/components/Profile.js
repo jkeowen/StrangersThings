@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getCurrentUserInfo } from "../HelperFunctions";
 
-const Profile = () => {
+const Profile = ({ userInfo, setUserInfo}) => {
     
-    const [ userInfo, setUserInfo ] = useState({posts:[{}], messages:[{post:{}, fromUser:{}}]});
     useEffect(() => {
         getCurrentUserInfo(setUserInfo)
     }, [])
@@ -37,7 +36,6 @@ const Profile = () => {
                 <div className="up-messages-content">
                     {userInfo.messages.map((message, index) => {
                         return <div className="up-messages" key={index}>
-                            <h3>test</h3>
                             <h3 className="up-messages-from-username">From:{message.fromUser.username}</h3>
                             <h3 className="up-messages-title">Listing:{message.post.title}</h3>
                             <p className="up-messages-content">{message.content}</p>

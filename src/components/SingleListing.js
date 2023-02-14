@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSingleListing } from "../HelperFunctions";
 
-const SingleListing = ({ listingIndex, singleListing, setSingleListing, listingUsername, setListingUserName }) => {
+const SingleListing = ({ listingIndex, singleListing, setSingleListing }) => {
 
     
 
@@ -20,7 +20,7 @@ const SingleListing = ({ listingIndex, singleListing, setSingleListing, listingU
     }
 
     useEffect(()=>{
-        getSingleListing(listingIndex, setSingleListing, setListingUserName)
+        getSingleListing(listingIndex, setSingleListing)
     },[singleListing])
 
    
@@ -31,12 +31,12 @@ const SingleListing = ({ listingIndex, singleListing, setSingleListing, listingU
     
                 <h3 className="post-title">{singleListing.title}</h3>
                 <p className="post-content">{singleListing.description}</p>
-                <h6 className="post-seller">{listingUsername}</h6>
+                <h6 className="post-seller">{singleListing.author.username}</h6>
                 <h6 className="post-price">{singleListing.price}</h6>
                 <h6 className="post-location">{singleListing.location}</h6>
                 <h6 className="post-posted-at"> {singleListing.createdAt}</h6>
         
-        { listingUsername === window.localStorage.getItem('username') ?
+        { singleListing.author.username === window.localStorage.getItem('username') ?
             <div className="user-buttons-single-post">
                 <button>Delete</button>
                 <button onClick={editButtonHandler}>Edit</button>

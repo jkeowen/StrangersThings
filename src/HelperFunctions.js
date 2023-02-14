@@ -96,17 +96,16 @@ export const deleteListingHandler = (listingID, currentListings, listingSetter, 
 }
 
 
-export const getSingleListing = (listingIndex, singleListingStateSetter, usernameSetter) =>{
+export const getSingleListing = (listingIndex, singleListingStateSetter) =>{
     fetch(`${apiURL}/posts`)
     .then(response => response.json())
     .then(result => {
-        usernameSetter(result.data.posts[listingIndex].author.username)
         singleListingStateSetter(result.data.posts[listingIndex]);
     })
     .catch(console.error);
 }
 
-export const editPostHandler = (id, paraTitle, paraDescription, paraPrice, paraLocation,listingIndex, singleListingSetter, usernameSetter) => {
+export const editPostHandler = (id, paraTitle, paraDescription, paraPrice, paraLocation, listingIndex, singleListingSetter, usernameSetter) => {
     fetch(`${apiURL}/posts/${id}`,{
         method: "PATCH",
         headers:{
@@ -138,6 +137,24 @@ export const getCurrentUserInfo = (setter) => {
       .then(result => {
         setter(result.data);
       }).catch(console.error);
+}
+
+export const sendMessageHandler = (postID, listingMessageContent) =>{
+    fetch(`${apiURL}/posts/${postID}/messages`, {
+        method: "POST",
+        headers:{
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${window.localStorage.getItem('strangeToken')}`
+        },
+        body: JSON.stringify({
+            message: {
+                content: listingMessageContent
+            }
+        })
+          }).then(response => response.json())
+          .then(result => {
+            console.log(result);
+    }).catch(console.error);
 }
 
 export default registrationHandler;

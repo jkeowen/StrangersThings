@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { newPostHandler, deleteListingHandler } from "../HelperFunctions";
+import { newPostHandler } from "../HelperFunctions";
 import { useNavigate } from "react-router-dom";
+import SearchForm from "./SearchForm";
 
 
 const Posts = ({apiURL, 
@@ -15,7 +16,7 @@ const [ newListingDescription, setNewListingDescription ] = useState('');
 const [ newListingPrice, setNewListingPrice ] = useState('');
 const [ newListingLocation, setNewListingLocation ] = useState('');
 const [ newListingWillDeliver, setNewListingWillDeliver ] = useState(false);
-                    
+const [ searchInput, setSearchInput ] = useState('');        
 const navigate = useNavigate();
 
 useEffect(()=>{
@@ -29,7 +30,7 @@ useEffect(()=>{
 }
     getPosts()
 }, []);
-
+ 
     const handleNewListingChange = (event) => {
         if(event.target.placeholder === 'title') setNewListingTitle(event.target.value);
         else if(event.target.placeholder === 'description') setNewListingDescription(event.target.value);
@@ -48,6 +49,10 @@ useEffect(()=>{
     const moreInfoHandler = (listingId, index) => {
         setListingIndex(index);
         navigate(`/singleListing/${listingId}`)
+    }
+    
+    const toSendMessageHandler = (recListingIndex) => {
+        navigate(`/messages/${recListingIndex}`);
     }
  
     return(
@@ -69,6 +74,7 @@ useEffect(()=>{
                     </div> 
                     : null
             }
+        <SearchForm searchInput={searchInput} setSearchInput={setSearchInput}/>
         {
         userPosts.map((post, index) => {
             return(
@@ -78,7 +84,12 @@ useEffect(()=>{
                     <h6 className="post-seller">{post.author.username}</h6>
                     <h6 className="post-price">{post.price}</h6>
                     <h6 className="post-location">{post.location}</h6>
+                    <h3>Test</h3>
                     <button onClick={()=> moreInfoHandler(post._id, index)} >More Info</button>
+                    {
+                        post.author.username === window.localStorage.getItem('username') ? null : 
+                        <button onClick={()=>toSendMessageHandler(index)}>Message</button>
+                    }
                 </div>
             )
         })}
