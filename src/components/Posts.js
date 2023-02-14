@@ -48,7 +48,7 @@ useEffect(()=>{
        
     const moreInfoHandler = (listingId, index) => {
         setListingIndex(index);
-        navigate(`/singleListing/${listingId}`)
+        navigate(`/singleListing/${index}`)
     }
     
     const toSendMessageHandler = (recListingIndex) => {
@@ -74,9 +74,14 @@ useEffect(()=>{
                     </div> 
                     : null
             }
-        <SearchForm searchInput={searchInput} setSearchInput={setSearchInput}/>
+        <SearchForm setSearchInput={setSearchInput}/>
         {
-        userPosts.map((post, index) => {
+        userPosts.filter((post) => {
+            if(searchInput === '') return post
+            else if(post.title.toLowerCase().includes(searchInput.toLowerCase())){
+                return post
+            }
+        }).map((post, index) => {
             return(
                 <div className="post" key={index}>
                     <h3 className="post-title">{post.title}</h3>
@@ -84,7 +89,6 @@ useEffect(()=>{
                     <h6 className="post-seller">{post.author.username}</h6>
                     <h6 className="post-price">{post.price}</h6>
                     <h6 className="post-location">{post.location}</h6>
-                    <h3>Test</h3>
                     <button onClick={()=> moreInfoHandler(post._id, index)} >More Info</button>
                     {
                         post.author.username === window.localStorage.getItem('username') ? null : 

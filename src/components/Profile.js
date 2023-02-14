@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getCurrentUserInfo } from "../HelperFunctions";
 
 const Profile = ({ userInfo, setUserInfo}) => {
@@ -7,12 +7,12 @@ const Profile = ({ userInfo, setUserInfo}) => {
         getCurrentUserInfo(setUserInfo)
     }, [])
 
-    console.log(userInfo.messages.length)
-    console.log(userInfo.messages[0].content)
+   
     return(
     <div className="user-profile">
         <h1>Hi, {userInfo.username}!</h1>
         <div className="up-listings">
+            <h2>Listings</h2>
             {
                 userInfo.posts.map((post, index) => {
                     return(

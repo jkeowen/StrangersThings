@@ -1,10 +1,16 @@
 import React from "react";
 
 
-const SearchForm = () => {
+
+const SearchForm = ({ setSearchInput }) => {
+
+    const searchHandler = (event) => {
+        setSearchInput(event.target.value);
+    }
+    
+
     return(
-        <input type="text" placeholder="Search" />
-        
+        <input type="text" placeholder="Search" onChange={searchHandler}/>
     )
 }
 
