@@ -36,12 +36,13 @@ export const loginHandler = (uname, pword, tokenSetter, nav, errorMessageSet) =>
         })
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
+        if(result.success){
         window.localStorage.setItem('strangeToken', result.data.token);
         window.localStorage.setItem('username', uname);
         tokenSetter(window.localStorage.getItem('strangeToken'));
-        nav("/");
-      }).catch(errorMessageSet('Invalid Credentials!'))
+        nav("/");}
+        else errorMessageSet('Invalid Credentials!')
+      }).catch(console.error)
 }
 
 export const getCurrentUser = (setFunction) =>{

@@ -93,7 +93,8 @@ const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPost
                 }
                 <button onClick={editButtonHandler}>{editCancelbutton}</button>
             </div> : 
-            <button onClick={toSendMessageHandler}>Message</button>
+            window.localStorage.getItem('username') ? 
+            <button onClick={toSendMessageHandler}>Message</button> : null
         }
         { isEditing ? null :
         <button onClick={backHandler}>Back</button>

@@ -54,7 +54,6 @@ useEffect(()=>{
     const toSendMessageHandler = (recListingIndex) => {
         navigate(`/messages/${recListingIndex}`);
     }
- 
     return(
 
         <div className="post-page">
@@ -91,8 +90,9 @@ useEffect(()=>{
                     <h6 className="post-location">{post.location}</h6>
                     <button onClick={()=> moreInfoHandler(post._id, index)} >More Info</button>
                     {
+                        window.localStorage.getItem('username') ?
                         post.author.username === window.localStorage.getItem('username') ? null : 
-                        <button onClick={()=>toSendMessageHandler(index)}>Message</button>
+                        <button onClick={()=>toSendMessageHandler(index)}>Message</button> : null
                     }
                 </div>
             )

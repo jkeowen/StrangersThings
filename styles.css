@@ -68,6 +68,16 @@ a{
 
 }
 
+.login-show-password{
+     
+    border: solid 1px;
+    padding: 1px
+}
+
+.login-show-password:hover{
+    cursor: pointer;
+}
+
 .login-submit{
     margin-right: 5px;
 }

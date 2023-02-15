@@ -17,11 +17,15 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) =>{
 
             }           
             <h1 className="title-header">Stranger's Things</h1>
+           
             <nav className="nav-bar-header">
                 <span className="item-nav-bar-header"><Link to="/">Home</Link></span>
-                <span className="item-nav-bar-header"><Link to="/messages">Messages</Link></span>
-                <span className="item-nav-bar-header"><Link to="/profile">Profile</Link></span>
+                { window.localStorage.getItem('username') ? 
+                <span><span className="item-nav-bar-header"><Link to="/messages">Messages</Link></span>
+                <span className="item-nav-bar-header"><Link to="/profile">Profile</Link></span></span>
+                :null}
             </nav>
+           
         </header>
     )
 }

@@ -7,7 +7,6 @@ const Profile = ({ userInfo, setUserInfo}) => {
         getCurrentUserInfo(setUserInfo)
     }, [])
 
-   
     return(
     <div className="user-profile">
         <h1>Hi, {userInfo.username}!</h1>
