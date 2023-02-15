@@ -13,7 +13,6 @@ const EditListing = ({ singleListing, setSingleListing, listingIndex, setListing
     const navigate = useNavigate();
     
     const { id } = useParams();
-    console.log(id)
     useEffect(()=> {
         getSingleListing(id, setSingleListing);
         setListingTitle(singleListing.title);
@@ -21,7 +20,8 @@ const EditListing = ({ singleListing, setSingleListing, listingIndex, setListing
         setListingPrice(singleListing.price);
         setListingLocation(singleListing.location);
     }, [])
-
+console.log(listingPrice)
+console.log(singleListing.price)
 
     const changeEditButtonHandler = (event) => {
         event.preventDefault();

@@ -91,7 +91,11 @@ export const deleteListingHandler = (listingID, currentListings, listingSetter, 
     }).then(response => response.json())
       .then(result => {
         console.log(result);
-        listingSetter([...currentListings].filter((listing) => listing !== thisListing))
+        listingSetter([...currentListings].filter((listing) => {
+            if(listing !== thisListing){
+                return listing;
+            }
+        }))
       }).catch(console.error);
 }
 

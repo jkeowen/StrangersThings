@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import SingleListing from "./components/SingleListing";
 import EditListing from "./components/EditListing";
 import SendAMessage from "./components/SendAMessage";
+import DeleteConfirmation from "./components/DeleteConfirmation";
 
 const App = () => {
     const [ userPosts, setUserPosts] = useState([]);
@@ -42,12 +43,13 @@ const App = () => {
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}
                 setIsLoggedIn={setIsLoggedIn}/>}/>
                 <Route path="/singleListing/:id" element={<SingleListing listingIndex={listingIndex} singleListing={singleListing}
-                                                        setSingleListing={setSingleListing}/>}/>
+                                                        setSingleListing={setSingleListing} userPosts={userPosts} setUserPosts={setUserPosts}/>}/>
                 <Route path="/editListing/:id" element={<EditListing singleListing={singleListing} setSingleListing={setSingleListing}/>}
                                 listingUsername={listingUsername} setListingUserName={setListingUserName} listingIndex={listingIndex}/>
                 <Route path="/messages" element={<Messages userInfo={userInfo} setUserInfo={setUserInfo} />}/>
                 <Route path="/messages/:index" element={<SendAMessage/>}/>
                 <Route path="/profile" element={<Profile userInfo={userInfo} setUserInfo={setUserInfo}/>}/>
+                <Route path="/deleteConfirmation" element={<DeleteConfirmation/>} />
             </Routes>
         </div>
     )
