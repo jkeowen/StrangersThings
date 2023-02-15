@@ -5,7 +5,7 @@ import { editPostHandler, deleteListingHandler } from "../AjaxHelperFunctions";
 import SingleNotEditingView from "./SingleNotEditingView";
 import SingleEditForm from "./SingleEditForm";
 import SingleListingButtons from "./SingleListingButtons";
-const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPosts }) => {
+const SingleListing = ({ singleListing, setSingleListing, userListings, setUserListings }) => {
 
     const [ isEditing, setIsEditing ] = useState(false);
     const [ editCancelbutton, setEditCancelButton] = useState('Edit')
@@ -56,7 +56,7 @@ const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPost
     }
 
     const deleteButtonHandler = () => {
-        deleteListingHandler(singleListing._id, userPosts, setUserPosts, singleListing);
+        deleteListingHandler(singleListing._id, userListings, setUserListings, singleListing);
         navigate('/deleteConfirmation')
     }
 

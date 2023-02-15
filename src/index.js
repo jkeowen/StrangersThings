@@ -13,7 +13,7 @@ import SendAMessage from "./components/SendAMessage";
 import DeleteConfirmation from "./components/DeleteConfirmation";
 
 const App = () => {
-    const [ userPosts, setUserPosts] = useState([]);
+    const [ userListings, setUserListings] = useState([]);
     const [ username, setUsername ] = useState('');
     const [ password, setPassword ] = useState(''); 
     const [ isLoggedIn, setIsLoggedIn ] = useState(window.localStorage.getItem('strangeToken'));
@@ -33,7 +33,7 @@ const App = () => {
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             <Routes>
                 <Route path="/" element={<Listings apiURL={apiURL} isLoggedIn={isLoggedIn}  
-                userPosts={userPosts} setUserPosts={setUserPosts} username={username} setListingIndex={setListingIndex} />}/>
+                userListings={userListings} setUserListings={setUserListings} username={username} setListingIndex={setListingIndex} />}/>
                 <Route path="/login" element={<Login apiURL={apiURL} username={username} setUsername={setUsername} 
                 password={password} setPassword={setPassword} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}/>
@@ -43,7 +43,7 @@ const App = () => {
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}
                 setIsLoggedIn={setIsLoggedIn}/>}/>
                 <Route path="/singleListing/:id" element={<SingleListing listingIndex={listingIndex} singleListing={singleListing}
-                                                        setSingleListing={setSingleListing} userPosts={userPosts} setUserPosts={setUserPosts}/>}/>
+                                                        setSingleListing={setSingleListing} userListings={userListings} setUserListings={setUserListings}/>}/>
                 <Route path="/editListing/:id" element={<EditListing singleListing={singleListing} setSingleListing={setSingleListing}/>}
                                 listingUsername={listingUsername} setListingUserName={setListingUserName} listingIndex={listingIndex}/>
                 <Route path="/messages" element={<Messages userInfo={userInfo} setUserInfo={setUserInfo} />}/>

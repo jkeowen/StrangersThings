@@ -4,8 +4,8 @@ import SearchForm from "./SearchForm";
 import AddNewListing from "./AddNewListing";
 import ListingsFetcher from "./ListingsFetcher";
 
-const Listings = ({ userPosts, 
-                setUserPosts,
+const Listings = ({ userListings, 
+                setUserListings,
                 isLoggedIn,
                 }) => {
 
@@ -14,18 +14,18 @@ const [ searchInput, setSearchInput ] = useState('');
 const [ searchCategory, setSearchCategory ] = useState('title')    
 
 useEffect(()=>{
-    getListings(setUserPosts)
+    getListings(setUserListings)
 }, []);
     return(
 
         <div className="post-page">
             {
                 isLoggedIn ? 
-                    <AddNewListing userPosts={userPosts} setUserPosts={setUserPosts}/>
+                    <AddNewListing userListings={userListings} setUserListings={setUserListings}/>
                     : null
             }
         <SearchForm setSearchInput={setSearchInput} setSearchCategory={setSearchCategory} />
-        <ListingsFetcher userPosts={userPosts} searchCategory={searchCategory} searchInput={searchInput} /> 
+        <ListingsFetcher userListings={userListings} searchCategory={searchCategory} searchInput={searchInput} /> 
         </div>
     )
 }

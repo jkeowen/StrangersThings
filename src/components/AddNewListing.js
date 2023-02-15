@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { newPostHandler } from "../AjaxHelperFunctions";
 
 
-const AddNewListing = ({ userPosts, setUserPosts }) => {
+const AddNewListing = ({ userListings, setUserListings }) => {
 
 
     const [ newListingTitle, setNewListingTitle] = useState('');
@@ -22,7 +22,7 @@ const AddNewListing = ({ userPosts, setUserPosts }) => {
         event.preventDefault();
         newPostHandler(newListingTitle, newListingDescription, 
                         newListingPrice, newListingLocation, 
-                        newListingWillDeliver, userPosts, setUserPosts);
+                        newListingWillDeliver, userListings, setUserListings);
     }
 
     return(

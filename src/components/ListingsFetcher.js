@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 
-const ListingsFetcher = ({userPosts, searchCategory, searchInput}) =>{
+const ListingsFetcher = ({userListings, searchCategory, searchInput}) =>{
 
     const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const ListingsFetcher = ({userPosts, searchCategory, searchInput}) =>{
     return(
         <div>
             {
-        userPosts.filter((post) => {
+        userListings.filter((post) => {
             if(searchCategory === 'username'){
                 if(searchInput === '') return post
                 else if(post.author.username.toLowerCase().includes(searchInput.toLowerCase())){
