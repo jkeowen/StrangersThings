@@ -14,7 +14,7 @@ const Registration = ({ apiURL,
     const [ passwordConfirmation, setPasswordConfirmation] = useState('');
     const [ passwordMatchMessage, setPasswordMatchMessage ] = useState('');
     const [ missingInfoMessage, setMissingInfoMessage ] = useState('');
-    
+    const [ showPassword, setShowPassword] = useState('password');
     const navigate = useNavigate();
     const handleChange = (event) => {
         if(event.target.placeholder === "username"){
@@ -40,9 +40,14 @@ const Registration = ({ apiURL,
         }
         if(username !== '' && password !== '' && passwordConfirmation !== ''){
             setMissingInfoMessage('')
-        }
+        }       
+    }
 
-       
+    const passwordViewHandler = (event) =>{
+        event.preventDefault();
+        if(showPassword === 'password') setShowPassword('text');
+        else setShowPassword('password');
+
     }
 
     return(
@@ -50,10 +55,11 @@ const Registration = ({ apiURL,
             <h3 className="login-title">Login to Stranger's Things</h3>
             <form className="login-form">
                 <input className="login-input" type="text" value={username} onChange={handleChange} placeholder="username"/> 
-                <input className="login-input" type="text" value={password} onChange={handleChange} placeholder="password"/> 
-                <input className="login-input" type="text" value={passwordConfirmation} onChange={handleChange} placeholder="confirm password"/> 
+                <input className="login-input" type={showPassword} value={password} onChange={handleChange} placeholder="password"/> 
+                <input className="login-input" type={showPassword} value={passwordConfirmation} onChange={handleChange} placeholder="confirm password"/> 
                 <div className="login-buttons">
                   <button className="login-submit" onClick={handleRegister}>Register</button>
+                  <button className="show-password" onClick={passwordViewHandler} >Show</button>
                 </div>
                 <p>{passwordMatchMessage}</p>
                 <p>{missingInfoMessage}</p>
