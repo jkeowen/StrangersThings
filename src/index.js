@@ -8,7 +8,6 @@ import Registration from "./components/Registration";
 import Messages from "./components/Messages";
 import Profile from "./components/Profile";
 import SingleListing from "./components/SingleListing";
-import EditListing from "./components/EditListing";
 import SendAMessage from "./components/SendAMessage";
 import DeleteConfirmation from "./components/DeleteConfirmation";
 
@@ -18,9 +17,7 @@ const App = () => {
     const [ password, setPassword ] = useState(''); 
     const [ isLoggedIn, setIsLoggedIn ] = useState(window.localStorage.getItem('strangeToken'));
     const [ alreadyExistsMessage, setAlreadyExistsMessage] = useState('');
-    const [ listingIndex, setListingIndex ] = useState('');
     const [ singleListing, setSingleListing ] = useState({author:{}});
-    const [ listingUsername, setListingUserName ] = useState('');
     const [ userInfo, setUserInfo ] = useState({posts:[{}], messages:[{post:{}, fromUser:{}}]});
     
 
@@ -33,7 +30,7 @@ const App = () => {
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             <Routes>
                 <Route path="/" element={<Listings apiURL={apiURL} isLoggedIn={isLoggedIn}  
-                userListings={userListings} setUserListings={setUserListings} username={username} setListingIndex={setListingIndex} />}/>
+                userListings={userListings} setUserListings={setUserListings} username={username} />}/>
                 <Route path="/login" element={<Login apiURL={apiURL} username={username} setUsername={setUsername} 
                 password={password} setPassword={setPassword} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}/>
@@ -42,10 +39,8 @@ const App = () => {
                 password={password} setPassword={setPassword}
                 alreadyExistsMessage={alreadyExistsMessage} setAlreadyExistsMessage={setAlreadyExistsMessage}
                 setIsLoggedIn={setIsLoggedIn}/>}/>
-                <Route path="/singleListing/:id" element={<SingleListing listingIndex={listingIndex} singleListing={singleListing}
+                <Route path="/singleListing/:id" element={<SingleListing singleListing={singleListing}
                                                         setSingleListing={setSingleListing} userListings={userListings} setUserListings={setUserListings}/>}/>
-                <Route path="/editListing/:id" element={<EditListing singleListing={singleListing} setSingleListing={setSingleListing}/>}
-                                listingUsername={listingUsername} setListingUserName={setListingUserName} listingIndex={listingIndex}/>
                 <Route path="/messages" element={<Messages userInfo={userInfo} setUserInfo={setUserInfo} />}/>
                 <Route path="/messages/:index" element={<SendAMessage/>}/>
                 <Route path="/profile" element={<Profile userInfo={userInfo} setUserInfo={setUserInfo}/>}/>

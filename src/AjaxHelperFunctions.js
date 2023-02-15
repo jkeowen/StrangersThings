@@ -62,12 +62,11 @@ export const getCurrentUser = (setFunction) =>{
         },            
     }).then(response => response.json())
         .then(result => {
-        console.log(result);
         setFunction(result);
         }).catch(console.error)
 }
 
-export const newPostHandler = (postTitle, postDescription, postPrice, postLocation, postWillDeliver, currentPosts, postSetter) => {
+export const newPostHandler = (postTitle, postDescription, postPrice, postLocation, currentPosts, postSetter) => {
     fetch(`${apiURL}/posts`,{
         method: "POST",
         headers:{
@@ -80,12 +79,10 @@ export const newPostHandler = (postTitle, postDescription, postPrice, postLocati
                 description: postDescription,
                 price: postPrice,
                 location: postLocation,
-                willDeliver: postWillDeliver
             }
         })
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
         postSetter([...currentPosts, result.data.post])
       })
       .catch(console.error)
@@ -100,7 +97,6 @@ export const deleteListingHandler = (listingID, currentListings, listingSetter, 
         }
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
         listingSetter([...currentListings].filter((listing) => {
             if(listing !== thisListing){
                 return listing;
@@ -136,7 +132,6 @@ export const editPostHandler = (id, paraTitle, paraDescription, paraPrice, paraL
         })
     }).then(response => response.json())
       .then(result => {
-        console.log(result);
         getSingleListing(listingIndex, singleListingSetter)
       }).catch(console.error);
 }
@@ -167,7 +162,6 @@ export const sendMessageHandler = (postID, listingMessageContent) =>{
         })
           }).then(response => response.json())
           .then(result => {
-            console.log(result);
     }).catch(console.error);
 }
 

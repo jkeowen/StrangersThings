@@ -1,5 +1,4 @@
 *{
-    padding: 0;
     margin: 0;
     box-sizing: border-box;
     background-color: lavender;
@@ -121,6 +120,8 @@ button:hover{
 
 .post-add-input{
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .post-content{
@@ -139,3 +140,15 @@ button:hover{
     align-items: center;
 }
 
+.edit-post{
+    display: flex;
+    flex-direction: column;
+}
+
+.single-listing-edit-content{
+    height: 0px;
+}
+
+.add-inputs{
+    margin-bottom: 10px;
+}
