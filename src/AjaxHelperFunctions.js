@@ -45,6 +45,15 @@ export const loginHandler = (uname, pword, tokenSetter, nav, errorMessageSet) =>
       }).catch(console.error)
 }
 
+export const getPosts = (setter) => {
+    fetch(`${apiURL}/posts`)
+    .then(response => response.json())
+    .then(result => {
+        setter(result.data.posts)
+    })
+.catch(console.error);
+}
+
 export const getCurrentUser = (setFunction) =>{
     fetch(`${apiURL}/user/me`, {
         headers:{

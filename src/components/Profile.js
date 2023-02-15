@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { getCurrentUserInfo } from "../HelperFunctions";
+import { getCurrentUserInfo } from "../AjaxHelperFunctions";
 
 const Profile = ({ userInfo, setUserInfo}) => {
     

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getCurrentUserInfo } from "../HelperFunctions";
+import { getCurrentUserInfo } from "../AjaxHelperFunctions";
 
 const Messages = ({ userInfo, setUserInfo }) => {
 

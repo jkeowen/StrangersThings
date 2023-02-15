@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getSingleListing } from "../HelperFunctions";
-import { editPostHandler, deleteListingHandler } from "../HelperFunctions";
+import { getSingleListing } from "../AjaxHelperFunctions";
+import { editPostHandler, deleteListingHandler } from "../AjaxHelperFunctions";
 
 const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPosts }) => {
 
@@ -64,7 +64,7 @@ const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPost
     const toSendMessageHandler = () => {
         navigate(`/messages/${id}`)
     }
-
+    console.log(singleListing)
     return(
         
         <div className="post">

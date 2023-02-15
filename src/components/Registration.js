@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import registrationHandler from "../HelperFunctions";
+import registrationHandler from "../AjaxHelperFunctions";
 
 const Registration = ({ apiURL, 
     username, 

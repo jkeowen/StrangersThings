@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getSingleListing, sendMessageHandler } from "../HelperFunctions";
+import { getSingleListing, sendMessageHandler } from "../AjaxHelperFunctions";
 
 const SendAMessage = () =>{
 

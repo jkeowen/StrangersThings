@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { editPostHandler } from "../HelperFunctions";
+import { editPostHandler } from "../AjaxHelperFunctions";
 import { useNavigate, useParams } from "react-router-dom";
-import { getSingleListing } from "../HelperFunctions";
+import { getSingleListing } from "../AjaxHelperFunctions";
 
 const EditListing = ({ singleListing, setSingleListing, listingIndex, setListingUsername }) =>{
 
