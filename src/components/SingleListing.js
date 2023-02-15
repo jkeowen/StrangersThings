@@ -4,10 +4,8 @@ import { getSingleListing } from "../AjaxHelperFunctions";
 import { editPostHandler, deleteListingHandler } from "../AjaxHelperFunctions";
 import SingleNotEditingView from "./SingleNotEditingView";
 import SingleEditForm from "./SingleEditForm";
-
+import SingleListingButtons from "./SingleListingButtons";
 const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPosts }) => {
-
-    
 
     const [ isEditing, setIsEditing ] = useState(false);
     const [ editCancelbutton, setEditCancelButton] = useState('Edit')
@@ -74,20 +72,12 @@ const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPost
                                 listingDescription={listingDescription} listingPrice={listingPrice}
                                 listingLocation={listingLocation} editHandler={editHandler} />
             }
-        { singleListing.author.username === window.localStorage.getItem('username') ?
-            <div className="user-buttons-single-post">
-                { isEditing ?
-                <button onClick={submitEditHandler} >Submit</button> : <button onClick={deleteButtonHandler} >Delete</button>
-                }
-                <button onClick={editButtonHandler}>{editCancelbutton}</button>
-            </div> : 
-            window.localStorage.getItem('username') ? 
-            <button onClick={toSendMessageHandler}>Message</button> : null
-        }
-        { isEditing ? null :
-        <button onClick={backHandler}>Back</button>
-        }
-    </div>
+
+            <SingleListingButtons singleListing={singleListing} isEditing={isEditing} 
+            submitEditHandler={submitEditHandler} deleteButtonHandler={deleteButtonHandler} 
+            editButtonHandler={editButtonHandler} editCancelbutton={editCancelbutton} 
+            toSendMessageHandler={toSendMessageHandler} backHandler={backHandler}/>
+        </div>
     )
 }
 
