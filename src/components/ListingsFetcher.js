@@ -7,7 +7,6 @@ const ListingsFetcher = ({userPosts, searchCategory, searchInput}) =>{
     const navigate = useNavigate();
 
     const moreInfoHandler = (index) => {
-        setListingIndex(index);
         navigate(`/singleListing/${index}`)
     }
     

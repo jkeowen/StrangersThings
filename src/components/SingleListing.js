@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getSingleListing } from "../AjaxHelperFunctions";
 import { editPostHandler, deleteListingHandler } from "../AjaxHelperFunctions";
+import SingleNotEditingView from "./SingleNotEditingView";
+import SingleEditForm from "./SingleEditForm";
 
 const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPosts }) => {
 
@@ -21,7 +23,6 @@ const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPost
     const backHandler = () => {
         navigate('/');
     }
-
     
     const editButtonHandler = () => {
        if(isEditing){
@@ -64,27 +65,14 @@ const SingleListing = ({ singleListing, setSingleListing, userPosts, setUserPost
     const toSendMessageHandler = () => {
         navigate(`/messages/${id}`)
     }
-    console.log(singleListing)
     return(
         
         <div className="post">
             { !isEditing ?
-                <div>
-                <h3 className="post-title">{singleListing.title}</h3>
-                <p className="post-content">{singleListing.description}</p>
-                <h6 className="post-seller">{singleListing.author.username}</h6>
-                <h6 className="post-price">{singleListing.price}</h6>
-                <h6 className="post-location">{singleListing.location}</h6>
-                <h6 className="post-posted-at"> {singleListing.createdAt}</h6>
-                </div> : 
-                <form className="edit-post">
-                <input className="single-listing-edit-title" name="title" onChange={editHandler} value={listingTitle} />
-                <input className="single-listing-edit-content"  name="description" onChange={editHandler} value={listingDescription}/> 
-                <h6 className="post-seller">{singleListing.author.username}</h6>
-                 <input className="single-listing-edit-price" name="price" onChange={editHandler} value={listingPrice} />
-                <input className="single-listing-edit-location" name="location" onChange={editHandler} value={listingLocation}/>
-                <h6 className="post-posted-at">{singleListing.createdAt}</h6>
-            </form>
+                <SingleNotEditingView singleListing={singleListing}/>: 
+                <SingleEditForm singleListing={singleListing} listingTitle={listingTitle}
+                                listingDescription={listingDescription} listingPrice={listingPrice}
+                                listingLocation={listingLocation} editHandler={editHandler} />
             }
         { singleListing.author.username === window.localStorage.getItem('username') ?
             <div className="user-buttons-single-post">
