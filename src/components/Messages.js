@@ -25,7 +25,7 @@ const Messages = ({ userInfo, setUserInfo }) => {
                 <div className="up-messages-content">
                     { !isDisplayingSent ?
                     <div className="message-section">
-                    <h3>Revieved</h3>
+                    <h3>Recieved</h3>
                     {userInfo.messages.filter((message) => message.fromUser.username !== window.localStorage.getItem('username')).map((message, index) => {
                         return <div className="up-messages" key={index}>
                             <h3 className="up-messages-from-username">From: {message.fromUser.username}</h3>

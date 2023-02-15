@@ -16,7 +16,9 @@ const [ newListingDescription, setNewListingDescription ] = useState('');
 const [ newListingPrice, setNewListingPrice ] = useState('');
 const [ newListingLocation, setNewListingLocation ] = useState('');
 const [ newListingWillDeliver, setNewListingWillDeliver ] = useState(false);
-const [ searchInput, setSearchInput ] = useState('');        
+const [ searchInput, setSearchInput ] = useState('');  
+const [ searchCategory, setSearchCategory ] = useState('title')    
+const [ isSearchingForUsername, setIsSearchingForUsername ] = useState(false)  
 const navigate = useNavigate();
 
 useEffect(()=>{
@@ -46,7 +48,7 @@ useEffect(()=>{
                         newListingWillDeliver, userPosts, setUserPosts);
     }
        
-    const moreInfoHandler = (listingId, index) => {
+    const moreInfoHandler = (index) => {
         setListingIndex(index);
         navigate(`/singleListing/${index}`)
     }
@@ -73,13 +75,21 @@ useEffect(()=>{
                     </div> 
                     : null
             }
-        <SearchForm setSearchInput={setSearchInput}/>
+        <SearchForm setSearchInput={setSearchInput} setSearchCategory={setSearchCategory} setIsSearchingForUsername={setIsSearchingForUsername}/>
+        
         {
         userPosts.filter((post) => {
-            if(searchInput === '') return post
-            else if(post.title.toLowerCase().includes(searchInput.toLowerCase())){
+            if(searchCategory === 'username'){
+                if(searchInput === '') return post
+                else if(post.author.username.toLowerCase().includes(searchInput.toLowerCase())){
                 return post
             }
+            }
+            else{
+            if(searchInput === '') return post
+            else if(post[searchCategory].toLowerCase().includes(searchInput.toLowerCase())){
+                return post
+            }}
         }).map((post, index) => {
             return(
                 <div className="post" key={index}>
