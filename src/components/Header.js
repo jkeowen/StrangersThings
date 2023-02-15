@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ isLoggedIn, setIsLoggedIn }) =>{
+const Header = ({ isLoggedIn, setIsLoggedIn, setUsername, setPassword }) =>{
 
     const logoutHandler = () => {
         window.localStorage.clear();
+        setPassword('');
+        setUsername('');
         setIsLoggedIn(false);
     }
 

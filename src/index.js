@@ -27,7 +27,7 @@ const App = () => {
 
     return(
         <div className="app">
-            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+            <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUsername={setUsername} setPassword={setPassword}/>
             <Routes>
                 <Route path="/" element={<Listings apiURL={apiURL} isLoggedIn={isLoggedIn}  
                 userListings={userListings} setUserListings={setUserListings} username={username} />}/>

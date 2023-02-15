@@ -50,6 +50,10 @@ const Registration = ({ apiURL,
 
     }
 
+    const backHandler = () =>{
+        navigate("/login")
+    }
+
     return(
         <div className="login-page">
             <h3 className="login-title">Login to Stranger's Things</h3>
@@ -58,6 +62,7 @@ const Registration = ({ apiURL,
                 <input className="login-input" type={showPassword} value={password} onChange={handleChange} placeholder="password"/> 
                 <input className="login-input" type={showPassword} value={passwordConfirmation} onChange={handleChange} placeholder="confirm password"/> 
                 <div className="login-buttons">
+                  <button className="login-submit" onClick={backHandler} >Back</button>
                   <button className="login-submit" onClick={handleRegister}>Register</button>
                   <button className="show-password" onClick={passwordViewHandler} >Show</button>
                 </div>
