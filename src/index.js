@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Posts from "./components/Posts";
+import Listings from "./components/Listings";
 import Login from "./components/Login";
 import Registration from "./components/Registration";
 import Messages from "./components/Messages";
@@ -32,7 +32,7 @@ const App = () => {
         <div className="app">
             <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
             <Routes>
-                <Route path="/" element={<Posts apiURL={apiURL} isLoggedIn={isLoggedIn}  
+                <Route path="/" element={<Listings apiURL={apiURL} isLoggedIn={isLoggedIn}  
                 userPosts={userPosts} setUserPosts={setUserPosts} username={username} setListingIndex={setListingIndex} />}/>
                 <Route path="/login" element={<Login apiURL={apiURL} username={username} setUsername={setUsername} 
                 password={password} setPassword={setPassword} setIsLoggedIn={setIsLoggedIn} isLoggedIn={isLoggedIn} />}

@@ -24,9 +24,7 @@ button:hover{
     cursor: pointer;
 }
 
-a{
-    border: none;
-}
+
 
 .login-register-header{
     /* margin-left: 30px; */
@@ -104,6 +102,40 @@ a{
     border: solid;
 }
 
+.post-logged-in-stuff{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-welcome{
+    margin: 10px;
+}
+
+.post-add-listing-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+
+.post-add-input{
+    margin-bottom: 10px;
+}
+
 .post-content{
     padding-left: 10px;
 }
+
+.search-form{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.user-profile{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

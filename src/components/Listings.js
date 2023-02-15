@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { getPosts } from "../AjaxHelperFunctions";
+import { getListings } from "../AjaxHelperFunctions";
 import SearchForm from "./SearchForm";
 import AddNewListing from "./AddNewListing";
 import ListingsFetcher from "./ListingsFetcher";
 
-const Posts = ({ userPosts, 
+const Listings = ({ userPosts, 
                 setUserPosts,
                 isLoggedIn,
                 }) => {
@@ -14,7 +14,7 @@ const [ searchInput, setSearchInput ] = useState('');
 const [ searchCategory, setSearchCategory ] = useState('title')    
 
 useEffect(()=>{
-    getPosts(setUserPosts)
+    getListings(setUserPosts)
 }, []);
     return(
 
@@ -30,4 +30,4 @@ useEffect(()=>{
     )
 }
 
-export default Posts;
+export default Listings;

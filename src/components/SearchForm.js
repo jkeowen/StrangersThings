@@ -13,7 +13,7 @@ const SearchForm = ({ setSearchInput, setSearchCategory }) => {
     }
 
     return(
-        <div className="searchForm">
+        <div className="search-form">
         <input type="text" placeholder="Search" onChange={searchHandler}/>
         <select placeholder="Search Category" onChange={changeSearch} >
             <option value='title'>Title</option>

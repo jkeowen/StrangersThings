@@ -30,10 +30,12 @@ const AddNewListing = ({ userPosts, setUserPosts }) => {
         <h2 className="post-welcome">Welcome {window.localStorage.getItem('username')}! </h2>
         <h3 className="post-add-listing-title">Create A New Listing:</h3>
         <form className="post-add-listing-form" onSubmit={handleSubmit}>
-            <input placeholder="title" type="text" onChange={handleNewListingChange}/>
-            <input placeholder="description" type="text" onChange={handleNewListingChange}/>
-            <input placeholder="price" type="text" onChange={handleNewListingChange}/>
-            <input placeholder="location" type='text' onChange={handleNewListingChange}/>
+            <div className="post-add-input">
+                <input placeholder="title" type="text" onChange={handleNewListingChange}/>
+                <input placeholder="description" type="text" onChange={handleNewListingChange}/>
+                <input placeholder="price" type="text" onChange={handleNewListingChange}/>
+                <input placeholder="location" type='text' onChange={handleNewListingChange}/>
+            </div>
             <button type="submit">Add New Listing!</button>
         </form>
         </div> 

@@ -34,9 +34,9 @@ const ListingsFetcher = ({userPosts, searchCategory, searchInput}) =>{
                 <div className="post" key={index}>
                     <h3 className="post-title">{post.title}</h3>
                     <p className="post-content">{post.description}</p>
-                    <h6 className="post-seller">{post.author.username}</h6>
-                    <h6 className="post-price">{post.price}</h6>
-                    <h6 className="post-location">{post.location}</h6>
+                    <h6 className="post-seller">Username: {post.author.username}</h6>
+                    <h6 className="post-price">Price: {post.price}</h6>
+                    <h6 className="post-location">Location: {post.location}</h6>
                     <button onClick={()=> moreInfoHandler(index)} >More Info</button>
                     {
                         window.localStorage.getItem('username') ?

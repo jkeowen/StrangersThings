@@ -9,25 +9,18 @@ const Messages = ({ userInfo, setUserInfo }) => {
         getCurrentUserInfo(setUserInfo);
     },[]) 
 
-    const displayHandler = (event) => {
-        if(event.target.name === 'sent'){
-            setIsDisplayingSent(true)
-        }
-        else{setIsDisplayingSent(false)}
-    }
-
     return(
-        <div className="messages-container">
+        <div className="user-profile">
              <h2>Messages</h2>
-             <button name="sent" onClick={displayHandler} >Sent</button> <button name="recieved" onClick={displayHandler}>Recieved</button>
+             <div><button name="sent" onClick={()=> setIsDisplayingSent(true)} >Sent</button> <button name="recieved" onClick={()=> setIsDisplayingSent(false)}>Recieved</button></div>
+             {isDisplayingSent ? <h3>Sent</h3> : <h3>Recieved</h3>}
             {   userInfo.messages[0]._id === undefined ? 
                 <h2 className="up-messages-none">Looks like you don't have any messages at this time {':('}</h2> :
                 <div className="up-messages-content">
                     { !isDisplayingSent ?
                     <div className="message-section">
-                    <h3>Recieved</h3>
                     {userInfo.messages.filter((message) => message.fromUser.username !== window.localStorage.getItem('username')).map((message, index) => {
-                        return <div className="up-messages" key={index}>
+                        return <div className="post" key={index}>
                             <h3 className="up-messages-from-username">From: {message.fromUser.username}</h3>
                             <h3 className="up-messages-title">Listing: {message.post.title}</h3>
                             <p className="up-messages-content">{message.content}</p>    
@@ -35,9 +28,8 @@ const Messages = ({ userInfo, setUserInfo }) => {
                   })}
                   </div> :
                   <div className="message-section">
-                    <h3>Sent</h3>
                     {userInfo.messages.filter((message) => message.fromUser.username === window.localStorage.getItem('username')).map((message, index) => {
-                        return <div className="up-messages" key={index}>
+                        return <div className="post" key={index}>
                             <h3 className="up-messages-from-username">From: {message.fromUser.username}</h3>
                             <h3 className="up-messages-title">Listing: {message.post.title}</h3>
                             <p className="up-messages-content">{message.content}</p>

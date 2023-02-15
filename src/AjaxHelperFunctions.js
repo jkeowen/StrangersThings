@@ -45,7 +45,7 @@ export const loginHandler = (uname, pword, tokenSetter, nav, errorMessageSet) =>
       }).catch(console.error)
 }
 
-export const getPosts = (setter) => {
+export const getListings = (setter) => {
     fetch(`${apiURL}/posts`)
     .then(response => response.json())
     .then(result => {
